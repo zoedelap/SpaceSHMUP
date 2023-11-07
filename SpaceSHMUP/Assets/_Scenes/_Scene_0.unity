@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 1077148612}
   - component: {fileID: 1077148613}
   - component: {fileID: 1077148614}
+  - component: {fileID: 1077148615}
   m_Layer: 0
   m_Name: _Hero
   m_TagString: Player
@@ -449,6 +450,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &1077148615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077148611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83408e9e169e9a409c5cf2de482904a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsType: 1
+  radius: 4
+  camWidth: 0
+  camHeight: 0
 --- !u!1 &1647878557
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783f9941599487340815bfdd0cc92be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationsPerSecond: 0.1
+  levelShown: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
