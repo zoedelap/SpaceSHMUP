@@ -22,7 +22,6 @@ public class BoundsCheck : MonoBehaviour
 
     [Header("Dynamic")]
     public eScreenLocs screenLocs = eScreenLocs.onScreen;
-    public bool isOnScreen = true;
     public float camWidth;
     public float camHeight;
 
@@ -40,32 +39,44 @@ public class BoundsCheck : MonoBehaviour
         if (boundsType == eType.outset) checkRadius = radius;
 
         Vector3 pos = transform.position;
-        isOnScreen = true;
+        screenLocs = eScreenLocs.onScreen;
 
         if (pos.x > camWidth + checkRadius)
         {
             pos.x = camWidth + checkRadius;
-            isOnScreen = false;
+            screenLocs |= eScreenLocs.offRight;
         }
         if (pos.x < -camWidth - checkRadius)
         {
             pos.x = -camWidth - checkRadius;
-            isOnScreen = false;
+            screenLocs |= eScreenLocs.offLeft;
         }
 
         if (pos.y > camHeight + checkRadius) {
             pos.y = camHeight + checkRadius;
-            isOnScreen = false;
+            screenLocs |= eScreenLocs.offUp;
         }
         if (pos.y < -camHeight - checkRadius)
         {
             pos.y = -camHeight - checkRadius;
-            isOnScreen = false;
+            screenLocs |= eScreenLocs.offDown;
         }
 
         if (keepOnScreen && !isOnScreen)
         {
             transform.position = pos;
+            screenLocs = eScreenLocs.onScreen;
         }
+    }
+
+    public bool isOnScreen
+    {
+        get { return (screenLocs == eScreenLocs.onScreen); }
+    }
+
+    public bool LocIs(eScreenLocs checkLoc)
+    {
+        if (checkLoc == eScreenLocs.onScreen) return isOnScreen;
+        return ((screenLocs & checkLoc) == checkLoc);
     }
 }
