@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private void Awake()
     {
         bndCheck = GetComponent<BoundsCheck>();    
@@ -46,5 +45,19 @@ public class Enemy : MonoBehaviour
         Vector3 tempPos = pos;
         tempPos.y -= speed * Time.deltaTime;
         pos = tempPos;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        GameObject otherGO = collision.gameObject;
+        
+        if (otherGO.GetComponent<ProjectileHero>() != null )
+        {
+            Destroy(otherGO);
+            Destroy(gameObject);
+        } else
+        {
+            Debug.Log("Enemy hit by non-ProjectileHero: " + otherGO.name);
+        }
     }
 }
